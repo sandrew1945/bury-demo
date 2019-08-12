@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>系统功能管理</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<meta name="MobileOptimized" content="320" />
+</head>
+<body onload="">
+<!-- BEGIN PAGE HEADER-->
+ <div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+		<h3 class="page-title">
+			<span class="icon-svg2 icon-pad"></span>
+			系统功能管理 - 新增
+		</h3>
+		<!-- END PAGE TITLE & BREADCRUMB-->
+	</div>
+</div> 
+<!-- BEGIN PAGE CONTENT-->    
+<div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN VALIDATION STATES-->
+		<h3 class="form-section"></h3>
+			<div class="portlet-body form">
+				<!-- BEGIN FORM-->
+				<form action="#" id="fm" class="form-horizontal form-horizontal" name="addUser" method="post" enctype="multipart/form-data">
+					<div class="form-body">
+						<div class="alert alert-danger display-hide" id="formErr">
+							<button class="close" data-close="alert"></button>表单填写错误,请重新填写.
+						</div>
+						<div class="row">
+							<div class="col-md-10">
+								<div class="form-group">
+									<label class="control-label col-md-3">应用系统代码<span class="required">*</span></label>
+									<div class="col-md-9"><!-- id="pulsate-regular"添加脉动 -->
+										<div class="input-group">
+											<input type="hidden" name="functionId" id="functionId" th:value="${func.functionId }" />
+											<input type="text" class="form-control" id="functionCode" name="functionCode" th:value="${func.functionCode}" placeholder="请输入正确代码" maxlength="20"/>
+											<span class="input-group-addon">
+												<i class="fa fa-dedent"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">应用系统名称<span class="required">*</span></label>
+									<div class="col-md-9">
+										<div class="input-group">                                       
+											<input type="text" class="form-control" id="functionName" name="functionName" th:value="${func.functionName }" placeholder="请输入正确名称" maxlength="20"/>
+											<span class="input-group-addon">
+												<i class="fa fa-dedent"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">所属应用系统<span class="required"></span></label>
+									<div class="col-md-9" id="appDiv">
+										<script th:inline="javascript">/*<![CDATA[*/SelectUtil.getApplicationList('applicationId', 'applicationId', [[${func.applicationId }]], true, '', '', 'appDiv');/*]]>*/</script>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">父级菜单<span class="required"></span></label>
+									<div class="col-md-9" id="funcDiv">
+										<script th:inline="javascript">/*<![CDATA[*/SelectUtil.getFunctionList('fatherFunc', 'fatherFunc', [[${func.fatherFunc}]], true, '', '', 'funcDiv');/*]]>*/</script>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">系统功能图标<span class="required"></span></label>
+									<div class="col-md-9">
+										<div class="input-group">
+											<input type="text" class="form-control" id="icon" name="icon" th:value="${func.icon }" placeholder="请输入正确图标代码" maxlength="50"/>
+											<span class="input-group-addon">
+												<i class="fa fa-image"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">系统功能访问地址<span class="required">*</span></label>
+									<div class="col-md-9">
+										<div class="input-group">
+											<input type="text" class="form-control" id="accessUrl" name="accessUrl" th:value="${func.accessUrl }" placeholder="请输入相对路径" maxlength="100"/>
+											<span class="input-group-addon">
+												<i class="fa fa-sitemap"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">系统功能顺序<span class="required">*</span></label>
+									<div class="col-md-9">
+										<div class="input-group">
+											<input type="text" class="form-control" id="functionOrder" name="functionOrder" th:value="${func.functionOrder }" placeholder="请输入整数" maxlength="20"/>
+											<span class="input-group-addon">
+												<i class="fa fa-sort"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">系统功能状态<span class="required">*</span></label>
+										<div class="col-md-9" id="statusDiv">
+										<script th:inline="javascript">/*<![CDATA[*/getSelect('functionStatus','functionStatus','1001',[[${func.functionStatus }]],true,'form-control','','statusDiv');/*]]>*/</script>
+									</div>
+								</div>
+								<div class="form-group">
+								<label class="control-label col-md-2"></label>
+								<div class="col-md-10">
+									<div class="input-icon right">
+										<button type="button" class="btn red btn-block " onclick="mySubmit()">
+										<i class="fa fa-save"></i>&nbsp;&nbsp;保存
+										</button>
+									</div>
+								</div>
+							 	</div>
+							 	<div class="form-group">
+								<label class="control-label col-md-2"></label>
+								<div class="col-md-10">
+									<div class="input-icon right">
+										<a class="btn blue btn-block ajaxify" href="functionmanager/functionManagerPre" id="btn_back" >
+											<i class="fa fa-reply "></i>&nbsp;&nbsp;返      回
+										</a>
+									</div>
+								</div>
+							 	</div>
+							</div>
+						</div>	
+					</div>
+				</form>
+				<!-- END FORM-->
+			</div>
+		<!-- END VALIDATION STATES-->
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	/*<![CDATA[*/
+	var formOption = {
+   		formId : "fm",
+   		formRoles : {
+						functionCode: {
+			                required: true
+			            },
+						functionName: {
+			                required: true
+			            },
+						functionOrder: {
+							required: true,
+							digits: true
+						},
+						functionStatus: {
+			                required: true
+			            }
+   					},
+   		formMessages: {
+						functionCode: {
+			                required: "系统功能代码必须填写"
+			            },
+						functionName: {
+			                required: "系统功能名称必须填写"
+			            },
+						functionOrder: {
+							required: "功能顺序必须填写",
+							digits: "必须输入整数"
+						},
+						functionStatus: {
+			            	required: "请选择状态"
+			            }
+   					},
+   		formCallBack: {
+   					url:  "functionmanager/updateFunctionInfo",	// 验证通过调用的后台连接
+   					type: "POST",  
+   					dataType: "json", 
+   					success: function(ajaxResult)
+   					{
+   						// altConfirm(alt_param);							// 处理成功的回调
+   						AjaxAnyWhere.handleResult(ajaxResult, handleSuccess);
+   						
+   					},
+   					error: function(data)
+   					{
+   						bootbox.alert("添加系统功能失败");							// 处理失败的回调
+   						return;
+   					}
+   		}
+   		
+   }
+ 
+ // 处理成功回调方法
+ var handleSuccess = function ()
+ {
+	Metronic.loadContentData("functionmanager/functionManagerPre");
+ }
+
+	
+jQuery(document).ready(function() {
+	CommonFormVaildate.init(formOption);
+});
+
+function mySubmit(){
+	 $("#fm").submit();
+}
+	/*]]>*/
+</script>

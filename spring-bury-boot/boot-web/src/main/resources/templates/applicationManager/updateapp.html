@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>应用系统管理</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<meta name="MobileOptimized" content="320" />
+</head>
+<body onload="">
+<!-- BEGIN PAGE HEADER-->
+ <div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+		<h3 class="page-title">
+			<span class="icon-svg2 icon-pad"></span>
+			应用系统管理 - 新增
+		</h3>
+		<!-- END PAGE TITLE & BREADCRUMB-->
+	</div>
+</div> 
+<!-- BEGIN PAGE CONTENT-->    
+<div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN VALIDATION STATES-->
+		<h3 class="form-section"></h3>
+			<div class="portlet-body form">
+				<!-- BEGIN FORM-->
+				<form action="#" id="fm" class="form-horizontal form-horizontal" name="addUser" method="post" enctype="multipart/form-data">
+					<div class="form-body">
+						<div class="alert alert-danger display-hide" id="formErr">
+							<button class="close" data-close="alert"></button>表单填写错误,请重新填写.
+						</div>
+						<div class="row">
+							<div class="col-md-10">
+								<div class="form-group">
+									<label class="control-label col-md-3">应用系统代码<span class="required">*</span></label>
+									<div class="col-md-9"><!-- id="pulsate-regular"添加脉动 -->
+										<div class="input-group">
+											<input type="hidden" name="applicationId" id="applicationId" th:value="${app.applicationId }" />
+											<input type="text" class="form-control" id="applicationCode" name="applicationCode" placeholder="请输入正确角色代码" th:value="${app.applicationCode }" maxlength="20"/>
+											<span class="input-group-addon">
+												<i class="fa fa-dedent"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">应用系统名称<span class="required">*</span></label>
+									<div class="col-md-9">
+										<div class="input-group">                                       
+											<input type="text" class="form-control" id="applicationName" name="applicationName" placeholder="请输入正确角色名称" th:value="${app.applicationName }" maxlength="20"/>
+											<span class="input-group-addon">
+												<i class="fa fa-dedent"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3">应用系统状态<span class="required">*</span></label>
+										<div class="col-md-9" id="statusDiv">
+										<script th:inline="javascript">/*<![CDATA[*/getSelect('status','status','1001',[[${app.status }]],true,'form-control','','statusDiv');/*]]>*/</script>
+									</div>
+								</div>
+								<div class="form-group">
+								<label class="control-label col-md-2"></label>
+								<div class="col-md-10">
+									<div class="input-icon right">
+										<button type="button" class="btn red btn-block " onclick="mySubmit()">
+										<i class="fa fa-save"></i>&nbsp;&nbsp;保存
+										</button>
+									</div>
+								</div>
+							 	</div>
+							 	<div class="form-group">
+								<label class="control-label col-md-2"></label>
+								<div class="col-md-10">
+									<div class="input-icon right">                                       
+										<!-- <a class="btn dark btn-block ajaxify" href="UserMain.action" id="btn_back" >返      回</a> -->
+										<a class="btn blue btn-block ajaxify" href="applicationmanager/applicationManagerPre" id="btn_back" >
+											<i class="fa fa-reply "></i>&nbsp;&nbsp;返      回
+										</a>
+									</div>
+								</div>
+							 	</div>
+							</div>
+						</div>	
+					</div>
+				</form>
+				<!-- END FORM-->
+			</div>
+		<!-- END VALIDATION STATES-->
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	/*<![CDATA[*/
+	var formOption = {
+   		formId : "fm",
+   		formRoles : {
+			   			applicationCode: {
+			                required: true
+			            },
+						applicationName: {
+			                required: true
+			            },
+			            status: {
+			                required: true
+			            }
+   					},
+   		formMessages: {
+						applicationCode: {
+			                required: "应用系统代码必须填写"
+			            },
+						applicationName: {
+			                required: "应用系统名称必须填写"
+			            },
+			            status: {
+			            	required: "请选择状态"
+			            }
+   					},
+   		formCallBack: {
+   					url:  "applicationmanager/updateApplicationInfo",	// 验证通过调用的后台连接
+   					type: "POST",  
+   					dataType: "json", 
+   					success: function(ajaxResult)
+   					{
+   						// altConfirm(alt_param);							// 处理成功的回调
+   						AjaxAnyWhere.handleResult(ajaxResult, handleSuccess);
+   						
+   					},
+   					error: function(data)
+   					{
+   						bootbox.alert("更新应用系统信息失败");							// 处理失败的回调
+   						return;
+   					}
+   		}
+   		
+   }
+ 
+ // 处理成功回调方法
+ var handleSuccess = function ()
+ {
+	Metronic.loadContentData("applicationmanager/applicationManagerPre");
+ }
+
+	
+jQuery(document).ready(function() {
+	CommonFormVaildate.init(formOption);
+});
+
+function mySubmit(){
+	 $("#fm").submit();
+}
+	/*]]>*/
+</script>

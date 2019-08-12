@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileServer>
+	<ServerConfig>
+		<host>192.168.1.26</host>
+		<username>develop</username>
+		<password>3f7e7fed558b0278</password>
+	</ServerConfig>
+	<Nodes>
+		<Node id="node01" role="R|W">
+			<FileRoot>/attachments_1</FileRoot>
+		</Node>
+		<Node id="node02" role="R|W">
+			<FileRoot>/attachments_2</FileRoot>
+		</Node>
+	</Nodes>
+</FileServer>

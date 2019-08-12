@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>系统功能管理</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<meta name="MobileOptimized" content="320" />
+</head>
+<body>
+<!-- BEGIN FORM-->
+<form class="form-horizontal" id="fm" name="fm" >
+<input type="hidden" id="curPage" value="" />
+<!-- BEGIN PAGE HEADER-->
+<div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+		<h3 class="page-title">
+			<span class="icon-svg2 icon-pad"></span> 系统功能管理
+		</h3>
+		<!-- END PAGE TITLE & BREADCRUMB-->
+	</div>
+</div>
+<!-- BEGIN PAGE CONTENT-->    
+<div class="tab-pane " id="tab_2">
+	<!-- BEGIN CONDITION PORTLET-->
+	<div class="portlet light">
+		<!-- 标题及收起工具栏 -->
+		<div class="portlet-title">
+			<div class="caption font-grey-gallery">
+				<i class="icon-bulb font-grey-gallery"></i>
+				<span class="caption-subject bold"> 查询条件</span>
+			</div>
+			<div class="tools">
+				<a href="javascript:;" class="collapse"></a>
+			</div>
+		</div>
+		<!-- 查询条件主体 -->
+		<div class="portlet-body">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-md-3 col-lg-3">
+						<div class="form-group">
+							<label class="control-label col-md-3">功能代码</label>
+							<div class="input-group col-md-9 col-sm-12 col-xs-12">
+								<input type="text" class="form-control" placeholder="系统代码" id="functionCode" name="functionCode" value="" />
+							</div>
+						</div>
+					</div>
+					<!--/span-->
+					<div class="col-md-3 col-lg-3">
+						<div class="form-group">
+							<label class="control-label col-md-3">功能名称</label>
+							<div class="input-group col-md-9 col-sm-12 col-xs-12">
+								<input type="text" class="form-control" placeholder="系统名称" id="functionName" name="functionName" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-3">
+						<div class="form-group">
+							<label class="control-label col-md-3">功能状态</label>
+								<div class="col-md-9" id="statusDiv"><script type="text/javascript">getSelect('functionStatus','functionStatus','1001','',true,'form-control','','statusDiv');</script></div>
+						</div>
+					</div>
+					<div class="col-md-3 col-lg-3">
+						<div class="form-group">
+							<label class="control-label col-md-3">所属应用</label>
+							<div class="col-md-9" id="appDiv">
+								<script th:inline="javascript">/*<![CDATA[*/SelectUtil.getApplicationList('applicationId', 'applicationId', '', true, '', '', 'appDiv');/*]]>*/</script>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--/span-->
+				<div class="row">
+					<div class="form-group col-md-12">
+						<div class="pull-right">
+							<button class="btn red btn-sm" type="button" id="btn_search"><i class="fa fa-search"></i> 查  询</button>  
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END CONDITION PORTLET-->
+
+
+	<!-- BEGIN DATAGRID PORTLET-->
+	<div class="portlet light">
+		<div class="portlet-title">
+			<div class="caption font-grey-gallery">
+				<i class="icon-list font-grey-gallery"></i>
+				<span class="caption-subject bold"> 查询结果</span>
+			</div>
+			<div class="actions">
+				<a href="functionmanager/createFuncInfoPre" class="btn btn-circle red-sunglo btn-sm ajaxify"><i class="icon-magnifier-add"></i> 添加 </a>
+				<div class="btn-group">
+					<a class="btn btn-circle btn-default btn-sm" href="javascript:;" data-toggle="dropdown">
+					<i class="fa fa-navicon"></i> 操作 <i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu pull-right">
+						<li><a href="javascript:void(0)" onclick="updateFunction()"><i class="fa fa-pencil"></i> 编辑 </a></li>
+						<li><a href="javascript:void(0)" onclick="deleteFunction()"><i class="fa fa-trash-o"></i> 删除</a></li>
+					</ul>
+				</div>
+				<a href="javascript:;" class="btn btn-circle btn-default btn-icon-only fullscreen"></a>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div th:replace="queryPage/pageDiv :: gridDiv" ></div>
+		</div>
+	</div>
+	<!-- END DATAGRID PORTLET-->
+
+<!-- END PAGE CONTENT-->
+	</div>
+</form>
+<!-- END FORM-->  
+</body>
+</html>
+
+<script type="text/javascript">
+	/*<![CDATA[*/
+ 	var option = 
+ 	{
+ 		 url:"functionmanager/functionManagerPageQuery",
+ 		 choiceType:'radio',
+ 		 formId:"fm",
+ 		 gridId:"myGrid",
+ 		 blankId:"_page",
+ 		 pageId:"myPage",
+ 		 columns : [
+ 			{header: "", width: "3%", dataIndex: "functionId",renderer: CommonUtil.getRadio},//设置序号的方式
+			{header: "功能代码", width: "10%", dataIndex: "functionCode"},
+			{header: "功能名称", width: "20%", dataIndex: "functionName"},
+			{header: "所属系统", width: "20%", dataIndex: "applicationName"},
+			{header: "功能图标", width: "13%", dataIndex: "icon", renderer: showIcon},
+			{header: "功能访问地址", width: "25%", dataIndex: "accessUrl"},
+			{header: "排序", width: "3%", dataIndex: "functionOrder"},
+			{header: "功能状态", width: "7%", dataIndex: "functionStatus", renderer: getfixCodeDesc}
+ 		]
+ 	};
+	jQuery(document).ready(function() {
+		DataGrid.__extQuery__(1,option);
+	});
+	$("#btn_search").click(function() {
+		DataGrid.__extQuery__(1,option);
+	});
+
+	function showIcon(value,metaDate,record)
+	{
+		return "<i class=\""+value+"\"></i>  " + value;
+	}
+	
+	function deleteFunction()
+	{
+		var intHot = CommonUtil.getRadioVal();
+		bootbox.confirm("是否删除此系统功能?", function(result){
+			if(result)
+			{
+				AjaxAnyWhere.sendRequestByData("functionmanager/deleteFunctionInfo","functionId="+intHot, delCallback);
+			}
+		});
+	}
+	
+	function updateFunction(){
+		var intHot = CommonUtil.getRadioVal();
+		if(intHot==null){
+			bootbox.alert("请选择需要编辑的系统功能?");
+			return false;
+		}
+		Metronic.loadContentData("functionmanager/updateFuncInfoPre?functionId="+intHot);
+	}
+	function delCallback(ajaxResult)
+	{
+		AjaxAnyWhere.handleResult(ajaxResult, function(){
+			DataGrid.__extQuery__(1,option);
+		});
+	}
+	/*]]>*/
+</script>
+	

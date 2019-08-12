@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+.main_box {
+    position: absolute; top:50%; left:50%; margin-top:-290px; margin-left: -231px; padding: 12px 38px 30px 38px; width:456px; height:539px; background:url(../../img/login/login_bg2.png);
+}
+.main_box .setting {position: absolute; top: 5px; right: 10px; width: 10px; height: 10px;}
+.main_box .setting a {color: #FF6600;}
+.main_box .setting a:hover {color: #555;}
+.login_logo {margin-bottom: 20px; height: 110px; text-align: center; margin-top:25px;}
+.login_logo img { margin:18px 0;}
+.login_logo p { color:#000; font-size:25px; font-weight:bold;}
+
+.login_msg {text-align: center; font-size: 16px;}
+.login_form {padding-top: 20px; font-size: 16px;}
+.login_box .form-control {display: inline-block; *display: inline; zoom: 1; width: 100%; font-size: 16px;}
+.login_box .form-control.x319 {width: 319px;}
+.login_box .form-control.x164 {width: 263px;}
+.x167 {width: 390px;}
+.login_box .form-group {margin-bottom: 20px;}
+.login_box .form-group label.t {width: 120px; text-align: right; cursor: pointer;}
+.login_box .form-group label.t1 {width: 125px; text-align: right; cursor: pointer;}
+.login_box .form-group.space {padding-top: 15px; border-top: 1px #FFF dotted;}
+/*.login_box .form-group img {margin-top: 1px; height: 32px; vertical-align: top;}*/
+.login_box .m {cursor: pointer; border:#cccccc 1px solid; margin-top:-2px;}
+.bottom {text-align: center; font-size: 14px; padding-top:10px;}
+
+
+.input_height{ height:48px !important;}
+.input_weight{ width:100% !important;}
+
+

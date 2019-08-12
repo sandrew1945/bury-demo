@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/head_lib :: header" >
+	<object style="border:0px" type="text/x-scriptlet" data="../common/head_lib.html" width="100%" height="30"></object>
+</head>
+<body onload="">
+	<form id="fm" action="showIndex" method="post">
+		<input id="roleId" name="roleId" type="hidden" />
+		<div id="ajax-modal" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1"></div>
+	</form>
+</body>
+</html>
+<script>
+var $modal = $('#ajax-modal');
+/**
+ * 打开组织选择树弹出层
+ */
+function showPostRole()
+{
+	  // create the backdrop and wait for next modal to be triggered
+	  //$('body').modalmanager('loading');
+	  setTimeout(function(){
+	      $modal.load('showRoleChoiceTree', '', function(){
+	      $modal.modal();
+	    });
+	  }, 100);
+}
+
+jQuery(document).ready(function() {
+	showPostRole();
+});
+</script>

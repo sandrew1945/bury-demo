@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="context-path" th:content="@{/}" />
+<title>北京市轨道交通GIS可视化平台</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!-- CSS -->
+<link type="text/css" rel="stylesheet" th:href="@{/assets/css/login/supersized.css}"  href="assets/css/login/supersized.css" />
+<link type="text/css" rel="stylesheet" th:href="@{/assets/css/login/login.css}"  href="assets/css/login/login.css" />
+<link type="text/css" rel="stylesheet" th:href="@{/assets/css/login/login_bg.css}"  href="assets/css/login/login_bg.css" />
+<link type="text/css" rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}"  href="assets/bootstrap/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" th:href="@{/assets/css/main.css}"  href="assets/css/main.css" />
+<style type="text/css">
+.display-hide{
+	display: none;
+}
+</style>
+<script type="text/javascript" th:src="@{/assets/plugins/jquery.min.js}" ></script>
+<script type="text/javascript">
+var BASE_CONTEXT_PATH = $('meta[name=context-path]').attr("content");
+BASE_CONTEXT_PATH = BASE_CONTEXT_PATH.substr(0, BASE_CONTEXT_PATH.length - 1);
+</script>
+<script type="text/javascript" th:src="@{/assets/js/login/jquery.form.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/login/tooltips.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/login/login.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/login/supersized.3.2.7.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/login/supersized-init.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/login/scripts.js}"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+ 	function changeCaptcha() {
+       var captchaImg = 'generate/image?t=' + Math.random();
+       $("#captcha_img").attr("src", captchaImg);
+    }
+           
+	function MM_swapImgRestore() { //v3.0
+		var i, x, a = document.MM_sr;
+		for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++)
+			x.src = x.oSrc;
+	}
+	function MM_preloadImages() { //v3.0
+		var d = document;
+		if (d.images) {
+			if (!d.MM_p)
+				d.MM_p = new Array();
+			var i, j = d.MM_p.length, a = MM_preloadImages.arguments;
+			for (i = 0; i < a.length; i++)
+				if (a[i].indexOf("#") != 0) {
+					d.MM_p[j] = new Image;
+					d.MM_p[j++].src = a[i];
+				}
+		}
+	}
+
+	function MM_findObj(n, d) { //v4.01
+		var p, i, x;
+		if (!d)
+			d = document;
+		if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+			d = parent.frames[n.substring(p + 1)].document;
+			n = n.substring(0, p);
+		}
+		if (!(x = d[n]) && d.all)
+			x = d.all[n];
+		for (i = 0; !x && i < d.forms.length; i++)
+			x = d.forms[i][n];
+		for (i = 0; !x && d.layers && i < d.layers.length; i++)
+			x = MM_findObj(n, d.layers[i].document);
+		if (!x && d.getElementById)
+			x = d.getElementById(n);
+		return x;
+	}
+
+	function MM_swapImage() { //v3.0
+		var i, j = 0, x, a = MM_swapImage.arguments;
+		document.MM_sr = new Array;
+		for (i = 0; i < (a.length - 2); i += 3)
+			if ((x = MM_findObj(a[i])) != null) {
+				document.MM_sr[j++] = x;
+				if (!x.oSrc)
+					x.oSrc = x.src;
+				x.src = a[i + 2];
+			}
+	}
+	/*]]>*/
+</script>
+</head>
+
+<body onLoad="MM_preloadImages()">
+
+<div class="page-container">
+	<div class="lanren">
+		<ul>
+			<li><img th:src="@{/assets/img/login/login_03.png}" /> </li>
+		</ul>
+	</div>
+	<div class="form-title">
+            <span class="form-title">欢迎.</span>
+            <span class="form-subtitle">请登录</span><span class="form-subtitle" th:text="${appName == null?'管理平台':appName }">管理平台</span>
+        </div>
+        <div class="alert alert-warning display-hide">
+            <button class="close" data-close="alert"></button>
+            <span> 请输入用户名及密码. </span>
+        </div>
+
+        <!--<div class="alert alert-danger <%if(!"false".equals(isAuthenticate)) {%>display-hide<%} %>">-->
+        <div class="alert alert-danger" th:classappend="${isAuthenticate ne  'false'} ? 'display-hide'">
+        <button class="close" data-close="alert"></button>
+        <span>用户名或密码不正确,请重新输入</span>
+        </div>
+		<div class="alert alert-danger" th:classappend="${captchaError ne  'false'} ? 'display-hide'">
+			<button class="close" data-close="alert"></button>
+			<span>验证码不正确,请重新输入</span>
+		</div>
+        <div class="alert alert-danger" th:classappend="${noRole ne 'ture'} ? 'display-hide'">
+        <button class="close" data-close="alert"></button>
+        <span>没有系统权限,请使用其他用户重新登录</span>
+        </div>
+	<div class="main_box">
+		<div class="login_box">
+			<div class="login_logo">
+				<img th:src="@{/assets/img/login/login_logo.png}" />
+				<p>北京市西客站GIS可视化平台</p>
+			</div>
+		
+			<div class="login_form">
+				<form id="loginForm" method="post" action="login">
+					<div class="form-group">
+						<div class="input-group">
+                          <span class="input-group-addon"><img th:src="@{/assets/img/login/icon1.png}" /></span>
+                          <input type="text" class="form-control input_height" autocomplete="off" placeholder="账号" name="username" value="bmac" />
+                      	</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+                          <span class="input-group-addon"><img th:src="@{/assets/img/login/icon2.png}" /></span>
+                          <input type="password" class="form-control password input_height"  autocomplete="off" placeholder="密码" name="password" value="123456" />
+                      	</div>
+					</div>
+					<div class="form-group">
+						<input id="captcha" name="captcha" type="text" class="form-control input_height x164 in" placeholder="验证码" />
+						<img src="generate/image" title="看不清？点击换一张" onclick="changeCaptcha()" border="0" id="captcha_img" class="m" width="108px" height="45px" style="margin-bottom: 6px;"/>
+					</div>
+					<div class="form-group" style="margin-top:75px;">　
+						<button type="button" id="submit_btn" class="btn btn-success btn-lg input_weight input_height">登 录</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

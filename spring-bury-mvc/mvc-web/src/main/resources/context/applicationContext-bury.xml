@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-lazy-init="true">
+	<description>Sql Mapping</description>
+
+	<bean id="dsw1" class="com.sandrew.bury.datasource.DataSourceWrapper">
+		<property name="databaseType" value="mysql"></property>
+		<property name="dataSource" ref="dataSource_db01"></property>
+		<property name="dataSourceName" value="druid"></property>
+	</bean>
+
+	<!--  -->
+	<bean id="sessionFactory" class="com.sandrew.bury.spring.SqlSessionFactoryBean">
+		<property name="dataSources">
+			<map key-type="java.lang.String">
+				<!-- 默认的数据源key必须为default -->
+				<entry key="default" value-ref="dsw1"></entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource_db01"></property>
+	</bean>
+
+
+	<!-- 配置事务的传播特性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="ServiceException" />
+			<tx:method name="commit*" propagation="REQUIRED" rollback-for="ServiceException" />
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="ServiceException" />
+			<tx:method name="create*" propagation="REQUIRED" rollback-for="ServiceException" />
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="ServiceException" />
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="ServiceException" />
+            <tx:method name="modify*" propagation="REQUIRED" rollback-for="ServiceException" />
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="ServiceException" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="allServiceMethod" expression="execution(* com.sandrew.mvc.service..*.*(..))" />
+		<aop:advisor pointcut-ref="allServiceMethod" advice-ref="txAdvice" />
+	</aop:config>
+
+</beans>
