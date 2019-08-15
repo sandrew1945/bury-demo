@@ -93,7 +93,7 @@ public class UserManagerDAO
 //            多数据源/分布式事务测试代码
 //            Session sessionOra = sessionFactory.openSession("oracle");
 //            int count = sessionOra.update("UPDATE TT_TEST_ORA SET BIRTHDAY = SYSDATE WHERE ID = 10000055", null);
-//            int count = sessionOra.update("UPDATE tt_test SET name = ? WHERE id = ?", new Parameters(new Date().toString(), 6).getParams());
+//            //int count = sessionOra.update("UPDATE tt_test SET name = ? WHERE id = ?", new Parameters(new Date().toString(), 6).getParams());
 //            System.out.println("count ============= " + count);
 
             Session session = sessionFactory.openSession();

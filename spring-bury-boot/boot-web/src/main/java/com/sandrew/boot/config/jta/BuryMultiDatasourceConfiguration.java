@@ -1,4 +1,4 @@
-package com.sandrew.boot;
+package com.sandrew.boot.config.jta;
 
 import com.sandrew.bury.SqlSessionFactory;
 import com.sandrew.bury.datasource.DataSourceWrapper;

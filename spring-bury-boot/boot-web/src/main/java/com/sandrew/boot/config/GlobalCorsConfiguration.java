@@ -1,4 +1,4 @@
-package com.sandrew.boot;
+package com.sandrew.boot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;

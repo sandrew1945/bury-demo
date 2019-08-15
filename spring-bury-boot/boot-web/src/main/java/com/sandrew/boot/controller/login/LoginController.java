@@ -47,8 +47,7 @@ public class LoginController extends BaseController
     {
         try
         {
-            /*
-            Session session1 = sessionFactory.openSession();
+            /*Session session1 = sessionFactory.openSession();
             List<UserPO> userPOList = session1.select("select * from tm_user", null, new POCallBack(UserPO.class));
             Session session2 = sessionFactory.openSession("oracle");
             session2.select("select * from tt_test_ora", null, new DAOCallback<Object>()

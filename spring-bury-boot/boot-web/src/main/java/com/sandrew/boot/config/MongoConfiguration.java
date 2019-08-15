@@ -1,9 +1,8 @@
-package com.sandrew.boot;
+package com.sandrew.boot.config;
 
 import com.mongodb.MongoClientURI;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -18,7 +17,7 @@ import java.net.UnknownHostException;
 /**
  * Created by summer on 2018/1/25.
  */
-@Configuration
+//@Configuration
 public class MongoConfiguration
 {
     @Value("${spring.data.mongodb.primary.uri}")

@@ -1,4 +1,4 @@
-package com.sandrew.boot;
+package com.sandrew.boot.config;
 
 
 import com.sandrew.boot.shiro.AccountAuthorizationRealm;
