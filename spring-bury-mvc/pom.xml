@@ -47,7 +47,7 @@
     <bury.version>1.2.SNAPSHOT</bury.version>
     <commons-lang3.version>3.3.2</commons-lang3.version>
     <javassist.version>3.15.0-GA</javassist.version>
-    <quartz.version>2.1.7</quartz.version>
+    <quartz.version>2.3.2</quartz.version>
     <pager-taglib.version>2.0</pager-taglib.version>
     <protobuf-java.version>2.5.0</protobuf-java.version>
     <hessian.version>4.0.38</hessian.version>
