@@ -19,7 +19,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.boot.version>2.0.2.RELEASE</spring.boot.version>
-        <jackson.version>2.9.5</jackson.version>
+        <jackson.version>2.12.1</jackson.version>
         <bury.version>1.2.SNAPSHOT</bury.version>
         <mysql.connector.version>5.1.35</mysql.connector.version>
         <oracle.driver.version>11.2.0.3</oracle.driver.version>
