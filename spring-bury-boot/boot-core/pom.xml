@@ -44,6 +44,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
@@ -55,7 +59,7 @@
             <groupId>com.sandrew</groupId>
             <artifactId>bury-spring-boot-starter</artifactId>
         </dependency>
-        <!-- 使用JTA事务时打开该dependency -->
+        <!-- 使用JTA事务时打开该dependency, 否则springboot会根据自动配置规则使用jta事务 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jta-atomikos</artifactId>

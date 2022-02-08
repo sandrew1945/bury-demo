@@ -12,6 +12,7 @@
         <module>boot-persistent</module>
         <module>boot-service</module>
         <module>boot-web</module>
+        <module>boot-rabbit</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -77,6 +78,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-cache</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
             <dependency>

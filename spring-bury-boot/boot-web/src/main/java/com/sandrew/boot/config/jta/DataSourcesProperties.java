@@ -1,16 +1,13 @@
 package com.sandrew.boot.config.jta;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by summer on 2019/8/13.
  */
-@Configuration
-@ConfigurationProperties(prefix = "spring.datasource.druid")
-@Component
+//@Configuration
+//@ConfigurationProperties(prefix = "spring.datasource.druid")
+//@Component
 public class DataSourcesProperties
 {
 
