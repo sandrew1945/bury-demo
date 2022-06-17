@@ -70,7 +70,7 @@
     <zxing.core.version>2.2</zxing.core.version>
     <zxing.javase.version>2.2</zxing.javase.version>
     <pinyin4j.version>2.5.0</pinyin4j.version>
-    <fast.version>1.2.7</fast.version>
+    <fast.version>1.2.83</fast.version>
     <fileserver.version>1.0.0</fileserver.version>
     <atomikos.version>4.0.6</atomikos.version>
     <transaction.jta.version>1.1</transaction.jta.version>
