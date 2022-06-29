@@ -38,7 +38,7 @@
         <log4j2.starter.version>1.5.4.RELEASE</log4j2.starter.version>
         <fileserver.version>1.0.0</fileserver.version>
         <dubbo.spring.version>0.2.0</dubbo.spring.version>
-        <zookeeper.version>3.4.9</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
         <zkclient.version>0.2</zkclient.version>
         <aspectj.version>1.5.4</aspectj.version>
         <spring.redis.version>2.0.2.RELEASE</spring.redis.version>
